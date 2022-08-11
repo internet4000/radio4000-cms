@@ -2,6 +2,7 @@
 .Track {
 	position: relative;
 	display: flex;
+	flex: 1;
 	font-size: 0.875em;
 	border-bottom: 1px solid var(--lightgray);
 }
@@ -55,4 +56,9 @@
 }
 .Layout--theme-dark .Track.is-editing {
 	background: var(--almost-bg);
+}
+
+.Tracks > * {
+	display: flex;
+	flex: 1;
 }

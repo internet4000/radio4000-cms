@@ -2,6 +2,7 @@
 @import url("./styles/variables.css");
 @import url("./styles/defaults.css");
 @import url("./styles/layout-themes.css");
+@import url("./styles/player.css");
 
 /* utility components */
 @import url("./styles/menu-nav.css");

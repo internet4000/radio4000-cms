@@ -1,0 +1,14 @@
+/* This is stupid but .Layout naming conflict */
+
+.Player radio4000-player {
+	max-height: 200px;
+}
+
+radio4000-player .Layout {
+	padding: 0;
+}
+
+radio4000-player .Layout-footer {
+	position: initial;
+	border-top: none;
+}

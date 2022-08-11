@@ -1,8 +1,10 @@
 import {useState, useEffect} from 'react'
 import {ThemeContext, themeContextDefault, darkMediaQuery} from 'contexts/theme.js'
+import {PlayerProvider} from 'contexts/player'
 import SiteNav from 'components/site/nav'
+import Player from 'components/player'
 
-export default function LayoutApp({children, session}) {
+export default function LayoutApp({children, dbSession, session}) {
 	const [theme, setTheme] = useState(themeContextDefault.theme)
 
 	const darkModeListener = (event) => {
@@ -27,7 +29,7 @@ export default function LayoutApp({children, session}) {
 		setTheme(newTheme)
 	}
 
-		const themeContext = {
+	const themeContext = {
 		theme,
 		themes: themeContextDefault.themes,
 		toggleTheme: toggleTheme
@@ -35,14 +37,17 @@ export default function LayoutApp({children, session}) {
 
 	return (
 		<ThemeContext.Provider value={themeContext}>
-			<main className={`Layout Layout--theme-${theme}`}>
-				<header className="Layout-header">
-					<SiteNav/>
-				</header>
-				<main className="Layout-main">
-					{children}
+			<PlayerProvider>
+				<main className={`Layout Layout--theme-${theme}`}>
+					<header className="Layout-header">
+						<SiteNav />
+					</header>
+					<main className="Layout-main">{children}</main>
+					<footer className="Layout-footer">
+						<Player database={dbSession.database} />
+					</footer>
 				</main>
-			</main>
+			</PlayerProvider>
 		</ThemeContext.Provider>
 	)
 }
