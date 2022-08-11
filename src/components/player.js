@@ -1,5 +1,5 @@
 import 'radio4000-player'
-import {useRef, useEffect} from 'react'
+import {useRef} from 'react'
 import {usePlayer} from 'contexts/player'
 import useTracks from 'hooks/use-tracks'
 
