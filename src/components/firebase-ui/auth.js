@@ -1,5 +1,6 @@
 import React from 'react'
-import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth'
+// import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth'
+import StyledFirebaseAuth from 'components/styled-firebase-auth'
 
 export default function FirebaseAuth({firebase}) {
 	const {auth} = firebase
@@ -17,7 +18,5 @@ export default function FirebaseAuth({firebase}) {
 		},
 	}
 
-	return <StyledFirebaseAuth
-		uiConfig={firebaseUiConfig}
-		firebaseAuth={auth()} />
+	return <StyledFirebaseAuth uiConfig={firebaseUiConfig} firebaseAuth={auth()} />
 }
