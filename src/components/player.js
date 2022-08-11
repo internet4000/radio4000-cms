@@ -1,14 +1,16 @@
 import 'radio4000-player'
-import {usePlayer} from 'contexts/player'
 import {useRef, useEffect} from 'react'
+import {usePlayer} from 'contexts/player'
+import useTracks from 'hooks/use-tracks'
 
-export default function Player() {
+export default function Player({database}) {
 	const {channel} = usePlayer()
 	const playerEl = useRef(null)
+	const {data: tracks} = useTracks(channel?.id, database)
 
-	if (channel && playerEl.current) {
-		var vue = playerEl.current.getVueInstance()
-		vue.updatePlaylist(testPlaylist)
+	if (tracks?.length) {
+		const vue = playerEl.current.getVueInstance()
+		vue.updatePlaylist(buildPlaylist(channel, tracks))
 	}
 
 	return (
@@ -36,22 +38,9 @@ function Statusline() {
 	)
 }
 
-// Create a playlist.
-
-const testPlaylist = {
-	title: 'A title for this list',
-	image:
-		'https://78.media.tumblr.com/5080191d7d19fe64da558f2b4324563e/tumblr_p8eoiltn1t1twkjb3o1_1280.png',
-	tracks: [
-		{
-			id: '1',
-			title: 'Randomfunk.ogg',
-			url: 'https://ia801409.us.archive.org/5/items/DWK051/Rare_and_Cheese_-_01_-_Randomfunk.ogg',
-		},
-		{
-			id: '2',
-			title: 'Rare and Cheese - Jazzpolice',
-			url: 'https://ia801409.us.archive.org/5/items/DWK051/Rare_and_Cheese_-_02_-_Jazzpolice.ogg',
-		},
-	],
+function buildPlaylist(channel, tracks) {
+	return {
+		title: channel.title,
+		tracks,
+	}
 }

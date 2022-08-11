@@ -21,7 +21,7 @@ export default function useTracks(channelId, database) {
 				console.log('Error fetching tracks', error)
 			}
 		}
-		fetchData()
+		if (channelId) fetchData()
 	}, [channelId, database])
 
 	return {data: tracks, error, setTracks}

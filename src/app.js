@@ -35,7 +35,7 @@ export default function App() {
 				<DbSession>
 					<DbSessionContext.Consumer>
 						{(dbSession) => (
-							<Layout session={dbSession.session}>
+							<Layout dbSession={dbSession} session={dbSession.session}>
 								<Routes>
 									<Route path="/" element={<PageHome dbSession={dbSession} />} />
 
@@ -51,6 +51,7 @@ export default function App() {
 											<PageAccount dbSession={dbSession} />
 										</AuthRequired>
 									}></Route>
+
 									{/* Channel(s) */}
 									<Route path="create/channel/import" element={<PageChannelsImport dbSession={dbSession} />} />
 									<Route path="channels/me" element={

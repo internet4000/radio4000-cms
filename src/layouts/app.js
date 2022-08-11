@@ -4,7 +4,7 @@ import {PlayerProvider} from 'contexts/player'
 import SiteNav from 'components/site/nav'
 import Player from 'components/player'
 
-export default function LayoutApp({children, session}) {
+export default function LayoutApp({children, dbSession, session}) {
 	const [theme, setTheme] = useState(themeContextDefault.theme)
 
 	const darkModeListener = (event) => {
@@ -44,7 +44,7 @@ export default function LayoutApp({children, session}) {
 					</header>
 					<main className="Layout-main">{children}</main>
 					<footer className="Layout-footer">
-						<Player />
+						<Player database={dbSession.database} />
 					</footer>
 				</main>
 			</PlayerProvider>
