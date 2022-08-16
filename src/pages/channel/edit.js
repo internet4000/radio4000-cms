@@ -29,7 +29,7 @@ function Channel({channel, database, canEdit}) {
 		<article key={channel.id}>
 			<header>
 				<p>
-					&larr; back to <Link to={`/${channel.slug}/`}>@{channel.slug}</Link>
+					<Link to={`/${channel.slug}/`}>&larr; back to @{channel.slug}</Link>
 				</p>
 				<h1>Edit channel</h1>
 			</header>
