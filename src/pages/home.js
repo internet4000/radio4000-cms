@@ -6,7 +6,8 @@ import Channels from 'components/channels'
 const {RADIO4000_APP_NAME} = config
 
 export default function PageHome({dbSession: {database, session, userChannel}}) {
-	const {channels} = useChannels(database, 30)
+	const { channels } = useChannels(database, 30)
+	console.log(channels)
 	const channelsLastCreated = [...channels].slice(0)
 
 	return (

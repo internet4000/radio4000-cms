@@ -10,7 +10,8 @@ export default function useChannels(database, limit = 3000) {
 			let res
 			try {
 				res = await database.from('channels').select('*').limit(limit).order('created_at', {ascending: true})
-				setChannels(res.data)
+				/* if no channels, res is null (and changes the type []) */
+				setChannels(res.data || [])
 			} catch (e) {
 				console.log('error fetching channels', e)
 			} finally {
