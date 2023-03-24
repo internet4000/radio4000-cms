@@ -1,5 +1,5 @@
 import {useState, useEffect} from 'react'
-import {firebaseGetUserChannel} from 'utils/firebase-client'
+import {firebaseGetUserChannel} from 'sdk/firebase-client'
 
 export default function useUserChannelFirebase(userId) {
 	const [userChannel, setUserChannel] = useState(null)

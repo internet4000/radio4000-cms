@@ -1,9 +1,7 @@
 import useForm from 'hooks/use-form'
 import ErrorDisplay from 'components/error-display'
 
-export function ResetPasswordForm({
-	onResetPassword
-}) {
+export function ResetPasswordForm({onResetPassword}) {
 	const {form, bind, handleSubmit, error, loading, result} = useForm(
 		{},
 		{
@@ -12,11 +10,7 @@ export function ResetPasswordForm({
 	)
 
 	if (result) {
-		return (
-			<p>
-				OK, now check your email for a link to reset your password.
-			</p>
-		)
+		return <p>OK, now check your email for a link to reset your password.</p>
 	}
 
 	return (
@@ -42,17 +36,15 @@ export function ResetPasswordForm({
 	)
 }
 
-export function ResetPasswordFormSession({
-	onResetPassword,
-	session,
-}) {
+export function ResetPasswordFormSession({onResetPassword, session}) {
 	const {user} = session
 	const {form, error, bind, handleSubmit} = useForm(
 		{},
 		{
-			onSubmit: () => onResetPassword(session.access_token, {
-				password: form.password
-			}),
+			onSubmit: () =>
+				onResetPassword(session.access_token, {
+					password: form.password,
+				}),
 		}
 	)
 	return (

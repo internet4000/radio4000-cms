@@ -5,7 +5,7 @@ import FirebaseAuth from 'components/firebase-ui/auth'
 import ErrorDisplay from 'components/error-display'
 import LoginRequired from 'components/login-required'
 
-import {firebase, startFirebase} from 'utils/firebase-client'
+import {firebase, startFirebase} from 'sdk/firebase-client'
 import useSessionFirebase from 'hooks/use-session-firebase'
 import useUserChannelFirebase from 'hooks/use-user-channel-firebase'
 

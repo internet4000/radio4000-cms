@@ -2,7 +2,7 @@ import {useState} from 'react'
 import {useParams} from 'react-router-dom'
 import useChannel from 'hooks/use-channel'
 import useCanEdit from 'hooks/use-can-edit'
-import {firebaseGetChannelBySlug} from 'utils/firebase-client'
+import {firebaseGetChannelBySlug} from 'sdk/firebase-client'
 import {Channel} from 'components/channels'
 import config from 'config'
 
