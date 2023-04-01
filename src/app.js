@@ -37,7 +37,8 @@ export default function App() {
 						{(dbSession) => (
 							<Layout dbSession={dbSession} session={dbSession.session}>
 								<Routes>
-									<Route path="/" element={<PageHome dbSession={dbSession} />} />
+									{/* <Route path="/" element={<PageHome dbSession={dbSession} />} /> */}
+									<Route path="/" element={<PageChannelsImport dbSession={dbSession} />} />
 
 									{/* Auth */}
 									<Route path="register" element={<PageRegister dbSession={dbSession} />} />
@@ -53,7 +54,8 @@ export default function App() {
 									}></Route>
 
 									{/* Channel(s) */}
-									<Route path="create/channel/import" element={<PageChannelsImport dbSession={dbSession} />} />
+
+									{/*
 									<Route path="channels/me" element={
 										<AuthRequired session={dbSession.session}>
 											<PageAccountChannels dbSession={dbSession}/>
@@ -66,6 +68,7 @@ export default function App() {
 									<Route path="create/channel" element={<PageChannelsCreate dbSession={dbSession} />} />
 									<Route path="create/track" element={<PageAdd dbSession={dbSession} />} />
 									<Route path="create/track/:slug" element={<PageAdd dbSession={dbSession} />} />
+									*/}
 
 									{/* Other pages */}
 									<Route path="test" element={<PageTest dbSession={dbSession} />} />
