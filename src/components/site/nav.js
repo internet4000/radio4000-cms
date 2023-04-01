@@ -28,32 +28,27 @@ export default function Nav(props) {
 						<CommandMenu commands={commands}></CommandMenu>
 						<menu>
 							<li>
-								<Link to="/">{RADIO4000_APP_NAME_MINI}</Link>
-								{!session && <Link to="/login">Login</Link>}
-
+								<Link to="/">{RADIO4000_APP_NAME_MINI} Migration Tool</Link>
+								{/* {!session && <Link to="/login">Login</Link>} */}
 								{session && (
 									<>
 										<Link to="/account">Account</Link>
-										<Link to="/channels" end>Channels</Link>
+										{/* <Link to="/channels" end>Channels</Link> */}
 										{userChannels?.length ? (
 											<>
+											{/*}
 												<SelectUserChannel
 													userChannel={userChannel}
 													userChannels={userChannels}
 													onChange={handleChannelChanged}
 												/>
-												<Link to="/create/track">+track</Link>
+										*/}
+												{/* <Link to="/create/track">+track</Link> */}
 											</>
 										) : null}
 									</>
 								)}
 							</li>
-							{!userChannels?.length && (
-								<li>
-									<Link to="/create/channel" end>Create channel</Link>
-									<Link to="/create/channel/import" title="">Import from old R4</Link>
-								</li>
-							 )}
 						</menu>
 					</>
 				)

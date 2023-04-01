@@ -44,7 +44,7 @@ export default function LayoutApp({children, dbSession, session}) {
 					</header>
 					<main className="Layout-main">{children}</main>
 					<footer className="Layout-footer">
-						<Player database={dbSession.database} />
+						{/* <Player database={dbSession.database} /> */}
 					</footer>
 				</main>
 			</PlayerProvider>

@@ -22,6 +22,7 @@ export default function Account({dbSession: {database, session, userChannel}}) {
 					<Link to="/logout">Log out</Link>
 				</p>
 			</section>
+			{/*
 			<section>
 				<header>
 					<h2>Appearance</h2>
@@ -39,6 +40,7 @@ export default function Account({dbSession: {database, session, userChannel}}) {
 					<DeleteUserForm onDelete={handleDeleteUser} />
 				</details>
 			</section>
+	*/}
 		</LayoutAccount>
 	)
 }

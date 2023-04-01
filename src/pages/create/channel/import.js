@@ -41,6 +41,7 @@ export default function PageNewChannelImport({dbSession: {radio4000ApiUrl, sessi
 			console.log(data)
 			setMigrationResult(data)
 			setError(false)
+			console.log(data)
 		} catch (error) {
 			console.error('Error calling migration backend', error)
 			setError(error)
@@ -57,21 +58,34 @@ export default function PageNewChannelImport({dbSession: {radio4000ApiUrl, sessi
 		loginMessage = `to import a radio channel from the previous system`
 	}
 
+	if (!session) {
+		return (
+			<>
+				<p>This tool will help you migrate your old Radio4000 channel to the new system.</p>
+				<h2>
+					<Link to="/login">First, sign in to your NEW account</Link>
+				</h2>
+			</>
+		)
+	}
+
+	if (!sessionFirebase && !migrationResult)
+		return (
+			<>
+				<h2>
+					Now, sign in to your <em>OLD</em> account:
+				</h2>
+				<FirebaseAuth firebase={firebase} />
+			</>
+		)
+
 	return (
-		<ChannelsLayout>
-			{/* <h1>Import channel</h1> */}
-			{!sessionFirebase && !migrationResult && (
-				<>
-					<p>
-						This is a new version of Radio4000. <br />
-						If you already have a radio from the old site, you can import it here.
-					</p>
-					<p>
-						First sign in to your <em>old</em> account:
-					</p>
-					<FirebaseAuth firebase={firebase} />
-				</>
-			)}
+		<>
+			<p>
+				✔ Access to new account: {session.user.email}
+				<br />✔ Access to old account: {sessionFirebase.email}
+			</p>
+
 			{sessionFirebase && !userChannelFirebase && (
 				<p>
 					This old Radio4000 account has no channel to migrate.
@@ -83,25 +97,26 @@ export default function PageNewChannelImport({dbSession: {radio4000ApiUrl, sessi
 			{userChannelFirebase && (
 				<section>
 					<p>
-						Import the channel <strong>@{userChannelFirebase.slug}</strong> and its tracks into the
-						new Radio4000 system?
+						We are ready to import the channel <strong>@{userChannelFirebase.slug}</strong> with its
+						tracks into the new Radio4000 system.
 					</p>
-					<nav>
+					<h2>
 						<button onClick={startMigration} disabled={loading || !tokenSupabase || !tokenFirebase}>
 							<strong>
-								Import <em>@{userChannelFirebase.slug}</em>
+								Import <em>@{userChannelFirebase.slug}</em> now
 							</strong>
 						</button>
-						<button onClick={() => firebase.auth().signOut()}>
-							Cancel and sign out of the old r4 system
-						</button>
-					</nav>
+					</h2>
+					<button onClick={() => firebase.auth().signOut()}>
+						Cancel and sign out of the old R4 system
+					</button>
 				</section>
 			)}
+
 			{migrationResult && !error ? (
 				<>
-					<p>Migration success!</p>
-					{userChannel && <Link to={`${userChannel.slug}`}>{userChannel.title}</Link>}
+					<h1>Migration success!</h1>
+					<p>Go to the new Radio4000. Your channel is waiting for you.</p>
 				</>
 			) : (
 				<ErrorDisplay error={error} />
@@ -113,6 +128,6 @@ export default function PageNewChannelImport({dbSession: {radio4000ApiUrl, sessi
 					<LoginRequired register={true} importChannel={true} message={loginMessage} />
 				</footer>
 			)}
-		</ChannelsLayout>
+		</>
 	)
 }

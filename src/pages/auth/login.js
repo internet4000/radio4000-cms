@@ -49,25 +49,6 @@ function LoginInfo({onResetPassword}) {
 	return (
 		<>
 			<ResetPasswordForm onResetPassword={onResetPassword} />
-
-			<details>
-				<summary>Don't have an account?</summary>
-				<p>
-					<Link to="/register">Register</Link> to create a radio channel.
-				</p>
-			</details>
-
-			<details>
-				<summary>Coming from the previous Radio4000 site?</summary>
-				<ul>
-					<li>Can't log in?</li>
-					<li>Already have a channel from the old site?</li>
-				</ul>
-				<p>
-					<Link to="/create/channel/import">Follow the import steps</Link> to transfer your old
-					radio.{' '}
-				</p>
-			</details>
 		</>
 	)
 }
