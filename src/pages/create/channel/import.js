@@ -38,10 +38,9 @@ export default function PageNewChannelImport({dbSession: {radio4000ApiUrl, sessi
 				}),
 			})
 			const data = await res.json()
-			console.log(data)
+			console.log('api migrate response data', data)
 			setMigrationResult(data)
 			setError(false)
-			console.log(data)
 		} catch (error) {
 			console.error('Error calling migration backend', error)
 			setError(error)
@@ -62,8 +61,9 @@ export default function PageNewChannelImport({dbSession: {radio4000ApiUrl, sessi
 		return (
 			<>
 				<p>This tool will help you migrate your old Radio4000 channel to the new system.</p>
+				<p>You will need two accounts: one from the old Radio4000, one from the new.</p>
 				<h2>
-					<Link to="/login">First, sign in to your NEW account</Link>
+					<Link to="/login">First, sign in to your NEW Radio4000 account</Link>
 				</h2>
 			</>
 		)
@@ -94,16 +94,16 @@ export default function PageNewChannelImport({dbSession: {radio4000ApiUrl, sessi
 					about this account.
 				</p>
 			)}
-			{userChannelFirebase && (
+
+			{!migrationResult && userChannelFirebase && (
 				<section>
 					<p>
-						We are ready to import the channel <strong>@{userChannelFirebase.slug}</strong> with its
-						tracks into the new Radio4000 system.
+						Ready to import the channel <strong>@{userChannelFirebase.slug}</strong> into the new Radio4000 system.
 					</p>
 					<h2>
 						<button onClick={startMigration} disabled={loading || !tokenSupabase || !tokenFirebase}>
 							<strong>
-								Import <em>@{userChannelFirebase.slug}</em> now
+								Import <em>@{userChannelFirebase.slug}</em>
 							</strong>
 						</button>
 					</h2>
@@ -115,8 +115,9 @@ export default function PageNewChannelImport({dbSession: {radio4000ApiUrl, sessi
 
 			{migrationResult && !error ? (
 				<>
-					<h1>Migration success!</h1>
+					<h1>Successfully imported @{userChannelFirebase.slug}!</h1>
 					<p>Go to the new Radio4000. Your channel is waiting for you.</p>
+					<p><a href={`https://beta.radio4000.com/${userChannelFirebase.slug}`}>beta.radio4000.com/{userChannelFirebase.slug}</a></p>
 				</>
 			) : (
 				<ErrorDisplay error={error} />

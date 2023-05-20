@@ -8,15 +8,6 @@ We've decided to archive the CMS part of this repository and  leave it as a tool
 
 This is now the repo for https://migrate.radio4000.com.
 
-## 
-
-Features:
-
-- Create and manage a user with email and password
-- Create and manage a radio channel with tracks
-
-Work in progress.
-
 ## How to develop
 
 ### Pre-requisites
@@ -53,4 +44,3 @@ To do this, see https://github.com/radio4000/supabase#readme
 
 - [Supabase](https://supabase.io/docs) & [Supabase JavaScript client](https://supabase.io/docs/reference/javascript/supabase-client)
 - [PostgreSQL Policies](https://www.postgresql.org/docs/current/sql-createpolicy.html)
-- [React.js](https://reactjs.org/docs/getting-started.html)
