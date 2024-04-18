@@ -6,7 +6,9 @@ This is a React app to manage [radio4000.com](https://radio4000.com) data connec
 We've decided to archive the CMS part of this repository and  leave it as a tool for migrating old Firebase channels to new PostgreSQL ones.
 ---
 
-This is now the repo for https://migrate.radio4000.com.
+## Deployment
+
+This repo is currently configured to deploy to migrate to https://migrate.radio4000.com via Vercel.
 
 ## How to develop
 
