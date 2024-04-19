@@ -1,14 +1,12 @@
 # Radio4000 Migrate
 
-This is a React app to manage [radio4000.com](https://radio4000.com) data connected to a [supabase](https://supabase.io/) database/auth.
+> This was supposed to be the new R4, but we've decided to scrap it for https://github.com/radio4000/components. Instead it is now a tool for migrating old Firebase channels to new PostgreSQL ones.
 
----
-We've decided to archive the CMS part of this repository and  leave it as a tool for migrating old Firebase channels to new PostgreSQL ones.
----
+This is a React app to manage [radio4000.com](https://radio4000.com) data connected to a [supabase](https://supabase.io/) database/auth.
 
 ## Deployment
 
-This repo is currently configured to deploy to migrate to https://migrate.radio4000.com via Vercel.
+This repo is currently configured to deploy to migrate to https://migrate.radio4000.com via GitHub Pages.
 
 ## How to develop
 
