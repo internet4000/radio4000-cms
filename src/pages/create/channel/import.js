@@ -37,9 +37,16 @@ export default function PageNewChannelImport({dbSession: {radio4000ApiUrl, sessi
 				}),
 			})
 			const data = await res.json()
-			console.log('api migrate response data', data)
+			console.log('api/import/firebase-realtime response data', data)
 			setMigrationResult(data)
-			setError(false)
+
+			if (Object.keys(data).length === 0) {
+				setError({message: 'Empty response from migration backend'})
+			} else if (data.code && data.message) {
+				setError(data)
+			} else {
+				setError(false)
+			}
 		} catch (error) {
 			console.error('Error calling migration backend', error)
 			setError(error)
