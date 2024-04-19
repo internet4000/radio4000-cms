@@ -36,19 +36,14 @@ export default function PageNewChannelImport({dbSession: {radio4000ApiUrl, sessi
 					tokenSupabase,
 				}),
 			})
-			const data = await res.json()
-			console.log('api/import/firebase-realtime response data', data)
-			setMigrationResult(data)
 
-			if (Object.keys(data).length === 0) {
-				setError({message: 'Empty response from migration backend'})
-			} else if (data.code && data.message) {
-				setError(data)
-			} else {
-				setError(false)
-			}
+			const data = await res.json()
+			setMigrationResult(data)
+			console.log(res.ok, res.status, res.statusText, 'api/import/firebase-realtime response data', data)
+			if (!res.ok) throw Error(data.message)
+			if (Object.keys(data).length === 0) throw Error('Empty response from migration backend')
 		} catch (error) {
-			console.error('Error calling migration backend', error)
+			console.error(error)
 			setError(error)
 		} finally {
 			setLoading(false)
