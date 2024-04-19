@@ -1,14 +1,6 @@
-import config from 'config'
 import {Link} from 'react-router-dom'
-import useChannels from 'hooks/use-channels'
-// import Channels from 'components/channels'
-
-const {RADIO4000_APP_NAME} = config
 
 export default function PageHome({dbSession: {database, session, userChannel}}) {
-	// const { channels } = useChannels(database, 30)
-	// const channelsLastCreated = [...channels].slice(0)
-
 	if (userChannel)
 		return (
 			<div>

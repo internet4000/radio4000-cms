@@ -1,6 +1,5 @@
 import React, {useState} from 'react'
 import {Link} from 'react-router-dom'
-import ChannelsLayout from 'layouts/channels'
 import FirebaseAuth from 'components/firebase-ui/auth'
 import ErrorDisplay from 'components/error-display'
 import LoginRequired from 'components/login-required'

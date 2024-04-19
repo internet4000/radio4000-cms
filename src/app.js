@@ -6,25 +6,14 @@ import {DbSessionContext} from 'contexts/db-session'
 import DbSession from 'components/db-session'
 import Layout from 'layouts/app'
 
-import PageHome from 'pages/home'
-
 import AuthRequired from 'components/auth-required'
 import PageRegister from 'pages/auth/register'
 import PageLogin from 'pages/auth/login'
 import PageLogout from 'pages/auth/logout'
 import PageResetPassword from 'pages/auth/reset-password'
-
 import PageAccount from 'pages/account'
-import PageAccountChannels from 'pages/channels/me'
-
-import PageChannels from 'pages/channels'
-import PageChannel from 'pages/channel'
-import PageChannelsCreate from 'pages/create/channel'
 import PageChannelsImport from 'pages/create/channel/import'
-import PageChannelEdit from 'pages/channel/edit'
-
 import PageTest from 'pages/test'
-import PageAdd from 'pages/create/track'
 import PageStyleguide from 'pages/style'
 import PageNoMatch from 'pages/404'
 

@@ -2,7 +2,7 @@ import {useState, useEffect} from 'react'
 import {ThemeContext, themeContextDefault, darkMediaQuery} from 'contexts/theme.js'
 import {PlayerProvider} from 'contexts/player'
 import SiteNav from 'components/site/nav'
-import Player from 'components/player'
+/* import Player from 'components/player' */
 
 export default function LayoutApp({children, dbSession, session}) {
 	const [theme, setTheme] = useState(themeContextDefault.theme)
