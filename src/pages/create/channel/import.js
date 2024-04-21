@@ -62,7 +62,7 @@ export default function PageNewChannelImport({dbSession: {radio4000ApiUrl, sessi
 		return (
 			<>
 				<p>This tool will help you migrate your old Radio4000 channel to the new system.</p>
-				<p>You will need two accounts: one from the old Radio4000, one from the new.</p>
+				<p>You will need two accounts: one from the old Radio4000, one from the new. The old could be using Email, Facebook or Google to sign in. The new will always be email.</p>
 				<h2>
 					<Link to="/login">First, sign in to your NEW Radio4000 account</Link>
 				</h2>
