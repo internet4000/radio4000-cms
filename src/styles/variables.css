@@ -7,7 +7,7 @@
 	--black: hsl(255, 6%, 12%);
 
 	--green: hsl(130, 52%, 24%);
-	--orange: orange;
+	--orange: var(--purple);
 	--purple: #5e1ae6;
 	--red: hsl(0, 100%, 40%);
 

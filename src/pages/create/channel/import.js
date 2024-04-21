@@ -39,7 +39,13 @@ export default function PageNewChannelImport({dbSession: {radio4000ApiUrl, sessi
 
 			const data = await res.json()
 			setMigrationResult(data)
-			console.log(res.ok, res.status, res.statusText, 'api/import/firebase-realtime response data', data)
+			console.log(
+				res.ok,
+				res.status,
+				res.statusText,
+				'api/import/firebase-realtime response data',
+				data,
+			)
 			if (!res.ok) throw Error(data.message)
 			if (Object.keys(data).length === 0) throw Error('Empty response from migration backend')
 		} catch (error) {
@@ -58,78 +64,98 @@ export default function PageNewChannelImport({dbSession: {radio4000ApiUrl, sessi
 		loginMessage = `to import a radio channel from the previous system`
 	}
 
-	if (!session) {
-		return (
-			<>
-				<p>This tool will help you migrate your old Radio4000 channel to the new system.</p>
-				<p>You will need two accounts: one from the old Radio4000, one from the new. The old could be using Email, Facebook or Google to sign in. The new will always be email.</p>
-				<h2>
-					<Link to="/login">First, sign in to your NEW Radio4000 account</Link>
-				</h2>
-			</>
-		)
-	}
+	console.log(sessionFirebase?.email, session?.user?.email)
 
-	if (!sessionFirebase && !migrationResult)
-		return (
-			<>
-				<h2>
-					Now, sign in to your <em>OLD</em> account:
-				</h2>
-				<FirebaseAuth firebase={firebase} />
-			</>
-		)
+	if (!sessionFirebase) {
+		return <p>Loading</p>
+	}
 
 	return (
 		<>
+			<p>This tool will help you migrate your old Radio4000 channel to the new system.</p>
 			<p>
-				✔ Access to new account: {session.user.email}
-				<br />✔ Access to old account: {sessionFirebase.email}
+				You will need an account for each. You can not use your old Radio4000 account to sign in to
+				the new.
 			</p>
 
-			{sessionFirebase && !userChannelFirebase && (
-				<p>
-					This old Radio4000 account has no channel to migrate.
-					<br />
-					You can <button onClick={() => firebase.auth().signOut()}>sign out</button> and forget
-					about this account.
-				</p>
-			)}
+			{/* LOGIN STUFF */}
 
-			{!migrationResult && userChannelFirebase && (
-				<section>
-					<p>
-						Ready to import the channel <strong>@{userChannelFirebase.slug}</strong> into the new Radio4000 system.
-					</p>
-					<h2>
-						<button onClick={startMigration} disabled={loading || !tokenSupabase || !tokenFirebase}>
-							<strong>
-								Import <em>@{userChannelFirebase.slug}</em>
-							</strong>
-						</button>
-					</h2>
-					<button onClick={() => firebase.auth().signOut()}>
-						Cancel and sign out of the old R4 system
-					</button>
-				</section>
-			)}
-
-			{migrationResult && !error ? (
+			<h3>Old account</h3>
+			{sessionFirebase?.email ? (
 				<>
-					<h1>Successfully imported @{userChannelFirebase.slug}!</h1>
-					<p>Go to the new Radio4000. Your channel is waiting for you.</p>
-					<p><a href={`https://beta.radio4000.com/${userChannelFirebase.slug}`}>beta.radio4000.com/{userChannelFirebase.slug}</a></p>
+					<p>
+						✔ {sessionFirebase.email}{' '}
+						<button onClick={() => firebase.auth().signOut()} className="ButtonReset underline">
+							Log out
+						</button>
+					</p>
 				</>
 			) : (
-				<ErrorDisplay error={error} />
+				<FirebaseAuth firebase={firebase} />
 			)}
 
-			{userChannelFirebase && !session && (
-				<footer>
-					<small>You'll have to </small>
-					<LoginRequired register={true} importChannel={true} message={loginMessage} />
-				</footer>
+			<h3>New account</h3>
+			{sessionFirebase?.email && !session?.user?.email ? (
+				<p>
+					<Link to="/login">Sign in to your NEW Radio4000 account</Link>
+				</p>
+			) : (
+				<>
+					<p>
+						{' '}
+						✔ {session.user.email} <Link to="/logout">Log out</Link>
+					</p>
+				</>
 			)}
+
+			{/* MIGRATE STUFF */}
+
+			{sessionFirebase?.email && session?.user?.email && (
+				<>
+					{!migrationResult && !userChannelFirebase ? (
+						<p>
+							This old Radio4000 account has no channel to migrate.
+							<br />
+							You can <button onClick={() => firebase.auth().signOut()}>sign out</button> and forget
+							about this account.
+						</p>
+					) : (
+						<section>
+							<h2>
+								Ready to import the radio channel <strong>@{userChannelFirebase.slug}</strong> into
+								the new Radio4000 system.
+							</h2>
+							<h2>
+								<button
+									onClick={startMigration}
+									disabled={loading || !tokenSupabase || !tokenFirebase}
+									className="SuperImportantButton"
+								>
+									<strong>
+										{loading ? 'Importing…' : 'Import'} <em>@{userChannelFirebase.slug}</em>
+									</strong>
+								</button>
+							</h2>
+						</section>
+					)}
+
+					{migrationResult && !error ? (
+						<>
+							<h1>Successfully imported @{userChannelFirebase.slug}!</h1>
+							<p>Go to the new Radio4000. Your channel is waiting for you.</p>
+							<p>
+								<a href={`https://beta.radio4000.com/${userChannelFirebase.slug}`}>
+									beta.radio4000.com/{userChannelFirebase.slug}
+								</a>
+							</p>
+						</>
+					) : (
+						<ErrorDisplay error={error} />
+					)}
+				</>
+			)}
+
+			{/* {session?.user?.email ? <p>Has supabase</p> : <p>needs supabase</p>} */}
 		</>
 	)
 }

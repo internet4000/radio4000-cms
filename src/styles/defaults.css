@@ -134,6 +134,9 @@ button[disabled] {
 .ButtonReset {
 	all: unset;
 }
+.underline {
+	text-decoration: underline;
+}
 
 /* Shared styles between buttons and some text inputs */
 button,

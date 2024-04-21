@@ -36,6 +36,7 @@ export default function PageLogin(props) {
 			{/* <br /> */}
 			<AuthForm onSubmit={handleSignIn} submitLabel="Log in" />
 			<LoginInfo onResetPassword={onResetPassword} />
+			<p>Don't have one yet? Create one on <a href="https://beta.radio4000.com">beta.radio4000.com</a></p>
 		</>
 	) : (
 		<>

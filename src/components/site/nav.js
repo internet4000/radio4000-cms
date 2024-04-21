@@ -31,7 +31,7 @@ export default function Nav(props) {
 								{/* {!session && <Link to="/login">Login</Link>} */}
 								{session && (
 									<>
-										<Link to="/account">Account</Link>
+										{/* <Link to="/account">Account</Link> */}
 										{/* <Link to="/channels" end>Channels</Link> */}
 										{userChannels?.length ? (
 											<>

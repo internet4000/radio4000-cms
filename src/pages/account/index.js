@@ -10,9 +10,9 @@ export default function Account({dbSession: {database, session, userChannel}}) {
 					<br />
 					<em>{session?.user?.email}</em>
 				</p>
-				<p>
+				{/* <p>
 					<Link to="/reset-password">Change password</Link>
-				</p>
+				</p> */}
 				<p>
 					<Link to="/logout">Log out</Link>
 				</p>
