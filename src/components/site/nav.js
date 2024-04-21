@@ -1,5 +1,4 @@
 import {NavLink as Link, useNavigate} from 'react-router-dom'
-import config from 'config'
 import {DbSessionContext} from 'contexts/db-session'
 import CommandMenu from 'components/site/command-menu'
 import createCommands from 'utils/commands'
