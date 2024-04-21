@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import {Link} from 'react-router-dom'
 import FirebaseAuth from 'components/firebase-ui/auth'
 import ErrorDisplay from 'components/error-display'
-import LoginRequired from 'components/login-required'
+// import LoginRequired from 'components/login-required'
 
 import {firebase, startFirebase} from 'utils/firebase-client'
 import useSessionFirebase from 'hooks/use-session-firebase'
@@ -11,7 +11,7 @@ import useUserChannelFirebase from 'hooks/use-user-channel-firebase'
 // This is not how to do it (?), but we can delay figuring it out until we need Firebase in a second place.
 startFirebase()
 
-export default function PageNewChannelImport({dbSession: {radio4000ApiUrl, session, userChannel}}) {
+export default function PageNewChannelImport({dbSession: {radio4000ApiUrl, session}}) {
 	const [loading, setLoading] = useState(false)
 	const [error, setError] = useState(false)
 	const [migrationResult, setMigrationResult] = useState(false)
@@ -56,15 +56,6 @@ export default function PageNewChannelImport({dbSession: {radio4000ApiUrl, sessi
 			// firebase.auth().signOut()
 		}
 	}
-
-	let loginMessage
-	if (userChannelFirebase) {
-		loginMessage = `to finish importing ${userChannelFirebase.title} (@${userChannelFirebase.slug})`
-	} else {
-		loginMessage = `to import a radio channel from the previous system`
-	}
-
-	console.log(sessionFirebase?.email, session?.user?.email)
 
 	if (!sessionFirebase) {
 		return <p>Loading</p>
