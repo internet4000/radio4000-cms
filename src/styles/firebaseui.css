@@ -19,3 +19,17 @@
 	display: flex;
 	padding: 1em;
 }
+
+.firebaseui-container,
+.firebaseui-idp-list,
+.firebaseui-tenant-list {
+	max-width: none !important;
+}
+
+.firebaseui-card-content {
+	padding: 0 !important;
+}
+.firebaseui-idp-list > .firebaseui-list-item,
+.firebaseui-tenant-list > .firebaseui-list-item {
+	text-align: left !important;
+}
