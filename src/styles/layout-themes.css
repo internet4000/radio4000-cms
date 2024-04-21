@@ -8,16 +8,12 @@
 
 /* dark variation */
 .Layout--theme-dark {
-	--theme: var(--orange);
-	--bg-color: var(--black);
-	--almost-bg: hsl(0, 0%, 20%);
-	--text-color: hsl(180deg 7% 90%);
-	--link-color: var(--text-color);
+	/* --theme: var(--orange); */
+	/* --bg-color: var(--black); */
+	/* --almost-bg: hsl(0, 0%, 20%); */
+	/* --text-color: hsl(180deg 7% 90%); */
+	/* --link-color: var(--text-color); */
 	/* --lightgray: hsl(0, 0%, 14%); */
-
-	menu a[aria-current="page"] {
-		color: white;
-	}
 }
 
 /* Layout padding/margin behavior */

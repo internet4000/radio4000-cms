@@ -21,7 +21,7 @@ export default function Nav(props) {
 
 				return (
 					<>
-						<CommandMenu commands={commands}></CommandMenu>
+						{/* <CommandMenu commands={commands}></CommandMenu> */}
 						<menu>
 							<li>
 								<Link to="/">Radio4000 migration (v1 → v2)</Link>
