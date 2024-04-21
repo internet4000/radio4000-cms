@@ -57,8 +57,9 @@ export default function PageNewChannelImport({dbSession: {radio4000ApiUrl, sessi
 		}
 	}
 
-	if (!sessionFirebase) {
-		return <p>Loading</p>
+
+	if (!sessionFirebase && !session) {
+		// return <p>Loading</p>
 	}
 
 	return (
@@ -73,34 +74,28 @@ export default function PageNewChannelImport({dbSession: {radio4000ApiUrl, sessi
 
 			<h3>Old account</h3>
 			{sessionFirebase?.email ? (
-				<>
-					<p>
-						✔ {sessionFirebase.email}{' '}
-						<button onClick={() => firebase.auth().signOut()} className="ButtonReset underline">
-							Log out
-						</button>
-					</p>
-				</>
+				<p>
+					✔ {sessionFirebase.email}{' '}
+					<button onClick={() => firebase.auth().signOut()} className="ButtonReset underline">
+						Log out
+					</button>
+				</p>
 			) : (
 				<FirebaseAuth firebase={firebase} />
 			)}
 
-			<h3>New account</h3>
-			{sessionFirebase?.email && !session?.user?.email ? (
+			<h2>New account</h2>
+			{session?.user?.email ? (
+				<p>
+					✔ {session?.user.email} <Link to="/logout">Log out</Link>
+				</p>
+			) : (
 				<p>
 					<Link to="/login">Sign in to your NEW Radio4000 account</Link>
 				</p>
-			) : (
-				<>
-					<p>
-						{' '}
-						✔ {session.user.email} <Link to="/logout">Log out</Link>
-					</p>
-				</>
 			)}
 
 			{/* MIGRATE STUFF */}
-
 			{sessionFirebase?.email && session?.user?.email && (
 				<>
 					{!migrationResult && !userChannelFirebase ? (
@@ -145,8 +140,6 @@ export default function PageNewChannelImport({dbSession: {radio4000ApiUrl, sessi
 					)}
 				</>
 			)}
-
-			{/* {session?.user?.email ? <p>Has supabase</p> : <p>needs supabase</p>} */}
 		</>
 	)
 }
