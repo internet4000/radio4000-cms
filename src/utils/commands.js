@@ -9,36 +9,36 @@ export default function createCommands({isSignedIn, navigate, userChannel}) {
 		},
 	})
 
-	commands.push({
-		label: 'Go to channels',
-		action: () => {
-			navigate('/channels')
-		},
-	})
+	/* commands.push({
+		 label: 'Go to channels',
+		 action: () => {
+		 navigate('/channels')
+		 },
+		 }) */
 
 	// Has a channel
 	if (userChannel) {
-		commands.push({
-			label: `Go to your channel: ${userChannel.name}`,
-			keys: 'g c',
-			action: () => navigate(`/${userChannel.slug}`),
-		})
-		commands.push({
-			label: `Create track`,
-			keys: 'c c',
-			action: () => navigate('/create/track'),
-		})
-		commands.push({
-			label: `Edit your channel`,
-			keys: 'g e',
-			action: () => navigate(`/${userChannel.slug}/edit`),
-		})
+		/* commands.push({
+			 label: `Go to your channel: ${userChannel.name}`,
+			 keys: 'g c',
+			 action: () => navigate(`/${userChannel.slug}`),
+			 }) */
+		/* commands.push({
+			 label: `Create track`,
+			 keys: 'c c',
+			 action: () => navigate('/create/track'),
+			 }) */
+		/* commands.push({
+			 label: `Edit your channel`,
+			 keys: 'g e',
+			 action: () => navigate(`/${userChannel.slug}/edit`),
+			 }) */
 		// Does not have a channel
 	} else {
-		commands.push({
-			label: `Create new channel`,
-			action: () => navigate(`/create/channel`),
-		})
+		/* commands.push({
+			 label: `Create new channel`,
+			 action: () => navigate(`/create/channel`),
+			 }) */
 		commands.push({
 			label: `Import channel`,
 			action: () => navigate(`/create/channel/import`),

@@ -4,8 +4,6 @@ import {DbSessionContext} from 'contexts/db-session'
 import CommandMenu from 'components/site/command-menu'
 import createCommands from 'utils/commands'
 
-const {RADIO4000_APP_NAME_MINI} = config
-
 export default function Nav(props) {
 	const navigate = useNavigate()
 
@@ -27,7 +25,7 @@ export default function Nav(props) {
 						<CommandMenu commands={commands}></CommandMenu>
 						<menu>
 							<li>
-								<Link to="/">{RADIO4000_APP_NAME_MINI} Migration Tool</Link>
+								<Link to="/">Radio4000 migration (v1 → v2)</Link>
 								{/* {!session && <Link to="/login">Login</Link>} */}
 								{session && (
 									<>

@@ -40,6 +40,7 @@ body,
 	flex-direction: column;
 	flex-grow: 1;
 	min-height: 100%;
+	align-items: center;
 }
 
 /* Themes */
@@ -55,7 +56,6 @@ html,
 	scroll-behavior: smooth;
 	padding: 1em 1.5em 0;
 	width: 100%;
-	background-color: var(--bg-color);
 	color: var(--text-color);
 	transition: background-color ease-in-out 100ms, color ease-in-out 100ms;
 }
@@ -81,4 +81,27 @@ html,
 	/* z-index: 1; */
 	border-top: 1px solid var(--darkgray);
 	background: var(--bg-color);
+}
+
+
+.Layout ol {
+	text-align: left;
+}
+
+/* migration only */
+r4-migration-step {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		background-color: var(--bg-color);
+		border-radius: 0.3rem;
+		padding: 1rem;
+		margin: 0.5rem;
+
+}
+r4-migration-step h3 {
+	padding: 1rem;
+}
+r4-migration-step p {
+	margin-bottom: 0;
 }

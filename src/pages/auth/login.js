@@ -34,16 +34,17 @@ export default function PageLogin(props) {
 			{/* 	<summary>Log in to Radio4000</summary> */}
 			{/* </details> */}
 			{/* <br /> */}
-			<AuthForm onSubmit={handleSignIn} submitLabel="Log in" />
-			<LoginInfo onResetPassword={onResetPassword} />
-			<p>Don't have one yet? Create one on <a href="https://beta.radio4000.com">beta.radio4000.com</a></p>
+
+			{/* <LoginInfo onResetPassword={onResetPassword} /> */}
+			<p>Migration of a v1 radio4000 channel, requires a v2 user account.</p>
+		<p>If you don't have one yet,<a href="https://radio4000.com">create it</a> then come back here</p>
 		</>
-	) : (
+		) : (
 		<>
 			<p>You are logged in.</p>
 			<button onClick={signOut}>Log out</button>
-		</>
-	)
+			</>
+		)
 }
 
 function LoginInfo({onResetPassword}) {

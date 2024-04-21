@@ -8,7 +8,7 @@ export default function PageLogout({
 	useEffect(() => {
 		if (session) {
 			signOut().finally(() => {
-				navigate('/login', { replace: true })
+				navigate('/', { replace: true })
 			})
 		}
 		navigate('/login', { replace: true })

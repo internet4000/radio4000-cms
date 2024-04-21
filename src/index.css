@@ -12,6 +12,3 @@
 @import url("./styles/command-menu.css");
 @import url("./styles/tracks.css");
 @import url("./styles/tags.css");
-
-/* plugin overwrites */
-@import url("./styles/firebaseui.css");
