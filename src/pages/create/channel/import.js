@@ -149,15 +149,11 @@ export default function PageNewChannelImport({dbSession: {radio4000ApiUrl, sessi
 					)}
 
 					{migrationResult && !error ? (
-						<>
+						<section>
 							<h1>Successfully imported @{userChannelFirebase.slug}!</h1>
-						<p>Go to the new Radio4000. Your channel is waiting for you.</p>
-						<p>
-							<a href={`https://beta.radio4000.com/${userChannelFirebase.slug}`}>
-								beta.radio4000.com/{userChannelFirebase.slug}
-							</a>
-						</p>
-						</>
+							<p>Go to the new Radio4000. Your channel is waiting for you.</p>
+							<p><a href={`https://radio4000.com/${userChannelFirebase.slug}`}>radio4000.com/{userChannelFirebase.slug}</a></p>
+						</section>
 					) : (
 						<ErrorDisplay error={error} />
 					)}
