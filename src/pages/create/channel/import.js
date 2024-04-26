@@ -77,21 +77,24 @@ export default function PageNewChannelImport({dbSession: {radio4000ApiUrl, sessi
 
 	return (
 		<>
-			<p>Radio <strong>channel migration</strong> from <a href="https://v1.radio4000.com">v1.radio4000.com</a> to <a href="https://radio4000.com">v2.radio4000.com</a> (<a href="https://matrix.to/#/#radio4000:matrix.org">chat support</a>)</p>
+			<header>
+				<p>To <strong>import</strong> a Radio4000 from <a href="https://v1.radio4000.com">v1.radio4000.com</a> (version 1) into the new <a href="https://radio4000.com">radio4000.com</a> (version 2).</p>
+		<h2>Steps to follow on this page</h2>
 		<ol>
 			<li>
-				Log in both Radio4000 accounts, version 1 and 2 (if you don't have a Radio4000 v2 account, you will need to create one).
+				Log in both Radio4000 accounts, version 1 and version 2.
 			</li>
 			<li>
 				Click "import", visit your new radio page!
 			</li>
 		</ol>
+		</header>
 
 		{/* LOGIN STUFF */}
 
 		<r4-migration>
 			<r4-migration-step>
-				<h3>Login <mark>v1</mark> account</h3>
+				<h3>Login Radio4000 <mark>version 1</mark></h3>
 				{sessionFirebase?.email ? (
 					<p>
 						✔ {sessionFirebase.email}{' '}
@@ -100,19 +103,23 @@ export default function PageNewChannelImport({dbSession: {radio4000ApiUrl, sessi
 						</button>
 					</p>
 				) : (
-					<FirebaseAuth firebase={firebase} />
+					<>
+						<FirebaseAuth firebase={firebase} />
+						<blockquote>Use a Radio4000 version 1 account for this step.</blockquote>
+					</>
 				)}
 			</r4-migration-step>
 
 			<r4-migration-step>
-				<h3>Login <mark>v2</mark> account</h3>
+				<h3>Login Radio4000 <mark>version 2</mark> (new)</h3>
 				{session?.user?.email ? (
 					<p>
 						✔ {session?.user.email} <Link to="/logout">Log out</Link>
 					</p>
 				) : (
 					<>
-					<AuthForm onSubmit={handleSignIn} submitLabel="Log in Radio4000 (v2)" />
+						<AuthForm onSubmit={handleSignIn} submitLabel="Sign in" />
+						<blockquote>Use a Radio4000 version 2 account for this step (this is a "new account" you need to create).</blockquote>
 					</>
 
 				)}
@@ -163,7 +170,7 @@ export default function PageNewChannelImport({dbSession: {radio4000ApiUrl, sessi
 					</>
 				) : (
 					<i>
-						Waiting for user authentication into v1 & v2 accounts, to start channel import.
+						Waiting for user authentication into version 1 & version 2 accounts, to start channel import.
 					</i>
 				)}
 			</r4-migration-step>
