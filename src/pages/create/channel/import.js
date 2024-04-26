@@ -80,7 +80,7 @@ export default function PageNewChannelImport({dbSession: {radio4000ApiUrl, sessi
 			<p>Radio <strong>channel migration</strong> from <a href="https://v1.radio4000.com">v1.radio4000.com</a> to <a href="https://radio4000.com">v2.radio4000.com</a> (<a href="https://matrix.to/#/#radio4000:matrix.org">chat support</a>)</p>
 		<ol>
 			<li>
-				Log in both accounts, version 1 and 2 (old and new).
+				Log in both Radio4000 accounts, version 1 and 2 (if you don't have a Radio4000 v2 account, you will need to create one).
 			</li>
 			<li>
 				Click "import", visit your new radio page!
@@ -111,7 +111,10 @@ export default function PageNewChannelImport({dbSession: {radio4000ApiUrl, sessi
 						✔ {session?.user.email} <Link to="/logout">Log out</Link>
 					</p>
 				) : (
+					<>
 					<AuthForm onSubmit={handleSignIn} submitLabel="Log in Radio4000 (v2)" />
+					</>
+
 				)}
 			</r4-migration-step>
 
