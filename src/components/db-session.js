@@ -43,7 +43,6 @@ export default function DbSession({children}) {
 		signIn: ({email, password, token}) => {
 			const options = {captchaToken: token}
 			if (password) {
-				debugger
 				return database.auth.signIn({email, password, options})
 			} else {
 				return database.auth.signIn({email, options})
