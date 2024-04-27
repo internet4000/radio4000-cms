@@ -95,7 +95,7 @@ export default function PageNewChannelImport({dbSession: {radio4000ApiUrl, sessi
 		<r4-migration>
 			<r4-migration-step>
 				<h3>Login Radio4000 <mark>version 1</mark></h3>
-				{sessionFirebase?.email ? (
+				{sessionFirebase ? (
 					<p>
 						✔ {sessionFirebase.email}{' '}
 						<button onClick={() => firebase.auth().signOut()} className="ButtonReset underline">
@@ -127,7 +127,7 @@ export default function PageNewChannelImport({dbSession: {radio4000ApiUrl, sessi
 
 			<r4-migration-step>
 				{/* MIGRATE STUFF */}
-				{sessionFirebase?.email && session?.user?.email ? (
+				{sessionFirebase && session?.user?.email ? (
 					<>
 					{!migrationResult && !userChannelFirebase ? (
 						<p>
