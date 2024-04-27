@@ -18,6 +18,7 @@ env:
   REACT_APP_FIREBASE_DATABASE_URL: ${{vars.FIREBASE_DATABASE_URL}}
   REACT_APP_FIREBASE_PROJECT_ID: ${{vars.FIREBASE_PROJECT_ID}}
   REACT_APP_FIREBASE_APP_ID: ${{vars.FIREBASE_APP_ID}}
+  REACT_APP_HCAPTCHA_SITE_KEY: ${{vars.HCAPTCHA_SITE_KEY}}
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
