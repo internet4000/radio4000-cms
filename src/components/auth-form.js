@@ -1,19 +1,27 @@
 import {useState} from 'react'
 import {useNavigate} from 'react-router-dom'
+import HCaptcha from "@hcaptcha/react-hcaptcha"
+import config from 'config'
+
 
 export default function Auth({onSubmit, submitLabel, redirectTo}) {
 	const navigate = useNavigate()
 	const [loading, setLoading] = useState(false)
 	const [message, setMessage] = useState(false)
 	const [errorMessage, setErrorMessage] = useState(false)
-	const [data, setData] = useState({email: '', password: ''})
-	const {email, password} = data
+	const [data, setData] = useState({email: '', password: '', token: ''})
 
 	const handleChange = ({target}) => {
 		const {name, value} = target
 		setData({
 			...data,
 			[name]: value,
+		})
+	}
+	const handleVerificationSuccess = (newToken) => {
+		setData({
+			...data,
+			token: newToken
 		})
 	}
 
@@ -32,7 +40,7 @@ export default function Auth({onSubmit, submitLabel, redirectTo}) {
 			} else {
 				setErrorMessage(false)
 			}
-			if (!password) {
+			if (!data.password) {
 				setMessage('Check your email for the login link!')
 			} else if (redirectTo) {
 				navigate(redirectTo, {replace: true})
@@ -53,7 +61,7 @@ export default function Auth({onSubmit, submitLabel, redirectTo}) {
 						type="email"
 						placeholder="Your email"
 						autoFocus={true}
-						value={email}
+						value={data.email}
 						disabled={loading}
 						onChange={handleChange}
 						required
@@ -64,9 +72,15 @@ export default function Auth({onSubmit, submitLabel, redirectTo}) {
 						name="password"
 						type="password"
 						placeholder="Your password"
-						value={password}
+						value={data.password}
 						disabled={loading}
 						onChange={handleChange}
+					/>
+				</label>
+				<label>Captcha
+					<HCaptcha
+						sitekey={config.HCAPTCHA_SITE_KEY}
+						onVerify={handleVerificationSuccess}
 					/>
 				</label>
 				<button disabled={loading} type="submit">

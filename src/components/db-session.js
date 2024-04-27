@@ -40,11 +40,13 @@ export default function DbSession({children}) {
 		userChannel,
 		setUserChannel /* usisng the state setter to set active channel as userChannel */,
 		signOut: () => database.auth.signOut(),
-		signIn: ({email, password}) => {
+		signIn: ({email, password, token}) => {
+			const options = {captchaToken: token}
 			if (password) {
-				return database.auth.signIn({email, password})
+				debugger
+				return database.auth.signIn({email, password, options})
 			} else {
-				return database.auth.signIn({email})
+				return database.auth.signIn({email, options})
 			}
 		},
 		signUp: async ({email, password}) => {

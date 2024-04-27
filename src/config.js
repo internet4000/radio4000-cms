@@ -6,6 +6,9 @@ const config = {
 	/* if having the r4-api deployed */
 	RADIO4000_API_URL: process.env.REACT_APP_RADIO4000_API_URL|| 'https://api.radio4000.com',
 
+	/* Hcpatch */
+	HCAPTCHA_SITE_KEY: process.env.REACT_APP_HCAPTCHA_SITE_KEY,
+
 	/* if connecting to supabase db/auth */
 	SUPABASE_URL: process.env.REACT_APP_SUPABASE_URL,
 	SUPABASE_ANON_KEY: process.env.REACT_APP_SUPABASE_ANON_KEY,
