@@ -1,4 +1,4 @@
-import {useState} from 'react'
+import {useState, useRef} from 'react'
 import {useNavigate} from 'react-router-dom'
 import HCaptcha from "@hcaptcha/react-hcaptcha"
 import config from 'config'
@@ -10,6 +10,8 @@ export default function Auth({onSubmit, submitLabel, redirectTo}) {
 	const [message, setMessage] = useState(false)
 	const [errorMessage, setErrorMessage] = useState(false)
 	const [data, setData] = useState({email: '', password: '', token: ''})
+
+	const captchaEl = useRef()
 
 	const handleChange = ({target}) => {
 		const {name, value} = target
@@ -49,6 +51,7 @@ export default function Auth({onSubmit, submitLabel, redirectTo}) {
 			setErrorMessage(err)
 		} finally {
 			setLoading(false)
+			captchaEl?.current?.resetCaptcha()
 		}
 	}
 
@@ -79,6 +82,7 @@ export default function Auth({onSubmit, submitLabel, redirectTo}) {
 				</label>
 				<label>Captcha
 					<HCaptcha
+						ref={captchaEl}
 						sitekey={config.HCAPTCHA_SITE_KEY}
 						onVerify={handleVerificationSuccess}
 					/>
