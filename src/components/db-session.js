@@ -43,18 +43,19 @@ export default function DbSession({children}) {
 		signIn: ({email, password, token}) => {
 			const options = {captchaToken: token}
 			if (password) {
-				return database.auth.signIn({email, password, options})
+				return database.auth.signInWithPassword({email, password, options})
 			} else {
-				return database.auth.signIn({email, options})
+				return database.auth.signInWithOtp({email, options})
 			}
 		},
-		signUp: async ({email, password}) => {
+		signUp: async ({email, password, token}) => {
 			if (!email) return
+			const options = {captchaToken: token}
 			if (password) {
-				return database.auth.signUp({email, password})
+				return database.auth.signUp({email, password, options})
 			} else {
 				// here we need to create a user with sign in, when no pw
-				return database.auth.signIn({email})
+				return database.auth.signInWithOtp({email, options})
 			}
 		},
 	}

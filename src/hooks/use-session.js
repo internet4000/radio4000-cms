@@ -2,7 +2,7 @@ import {useState, useEffect} from 'react'
 import {useNavigate} from 'react-router-dom'
 
 export default function useSession(sessionProvider) {
-	const [session, setSession] = useState(sessionProvider.auth.session())
+	const [session, setSession] = useState(sessionProvider.auth.getSession())
 	const navigate = useNavigate()
 
 	useEffect(() => {
