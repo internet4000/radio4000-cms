@@ -78,14 +78,22 @@ export default function PageNewChannelImport({dbSession: {radio4000ApiUrl, sessi
 	return (
 		<>
 			<header>
-				<p>To <strong>import</strong> a Radio4000 from <a href="https://v1.radio4000.com">v1.radio4000.com</a> (version 1) into the new <a href="https://radio4000.com">radio4000.com</a> (version 2).</p>
-		<h2>Steps to follow on this page</h2>
+				<p>To <strong>migrate/import a radio channel</strong> from Radio4000 version 1 (<a href="https://v1.radio4000.com">v1.radio4000.com</a>) to the new Radio4000 version 2 (<a href="https://radio4000.com">radio4000.com</a>). If you're experiencing any issue, <a href="https://radio4000.com/settings#about">we can help</a>!</p>
 		<ol>
 			<li>
-				Log in both Radio4000 accounts, version 1 and version 2.
+				<a href="https://radio4000.com/sign/up">Sign-up for a version 2 user account</a> (required for everyone, also for version 1 users)
 			</li>
 			<li>
-				Click "import", visit your new radio page!
+				On this page, <strong>sign-in your two accounts</strong> (version 1 and version 2).
+			</li>
+			<li>
+				Click the <strong>import</strong> button (the radio channel and all its tracks are imported)
+			</li>
+			<li>
+				<strong>Visit your new radio</strong> page!
+			</li>
+			<li>
+				<i>(Optional) Repeat the operation, to import multiple radio channels into one Radio4000 version 2 account.</i>
 			</li>
 		</ol>
 		</header>
@@ -98,35 +106,35 @@ export default function PageNewChannelImport({dbSession: {radio4000ApiUrl, sessi
 				{sessionFirebase ? (
 					<p>
 						✔ {sessionFirebase.email}{' '}
-						<button onClick={() => firebase.auth().signOut()} className="ButtonReset underline">
-							Log out
-						</button>
-					</p>
+		<button onClick={() => firebase.auth().signOut()} className="ButtonReset underline">
+			Log out
+		</button>
+				</p>
 				) : (
-					<>
-						<FirebaseAuth firebase={firebase} />
-						<blockquote>Use a Radio4000 version 1 account for this step.</blockquote>
+				<>
+					<FirebaseAuth firebase={firebase} />
+					<blockquote>Use a Radio4000 version 1 account for this step.</blockquote>
 					</>
-				)}
-			</r4-migration-step>
+)}
+</r4-migration-step>
 
-			<r4-migration-step>
-				<h3>Login Radio4000 <mark>version 2</mark> (new)</h3>
-				{session?.user?.email ? (
-					<p>
-						✔ {session?.user.email} <Link to="/logout">Log out</Link>
-					</p>
-				) : (
-					<>
-						<AuthForm onSubmit={handleSignIn} submitLabel="Sign in" />
-						<blockquote>Use a Radio4000 version 2 account for this step (this is a "new account" you need to create).</blockquote>
-					</>
+<r4-migration-step>
+	<h3>Login Radio4000 <mark>version 2</mark> (new)</h3>
+	{session?.user?.email ? (
+		<p>
+			✔ {session?.user.email} <Link to="/logout">Log out</Link>
+		</p>
+	) : (
+		<>
+			<AuthForm onSubmit={handleSignIn} submitLabel="Sign in" />
+			<blockquote>Use a Radio4000 version 2 account for this step (this is a "new account" that everyone needs to create, in order to use the new radio system).</blockquote>
+		</>
 
-				)}
-			</r4-migration-step>
+	)}
+</r4-migration-step>
 
-			<r4-migration-step>
-				{/* MIGRATE STUFF */}
+<r4-migration-step>
+{/* MIGRATE STUFF */}
 				{sessionFirebase && session?.user?.email ? (
 					<>
 					{!migrationResult && !userChannelFirebase ? (
@@ -152,29 +160,29 @@ export default function PageNewChannelImport({dbSession: {radio4000ApiUrl, sessi
 								>
 									<strong>
 										{loading ? 'Importing…' : 'Import'} <em>@{userChannelFirebase.slug}</em>
-									</strong>
-								</button>
-							</h2>
-						</section>
-					)}
+		</strong>
+		</button>
+		</h2>
+		</section>
+)}
 
-					{migrationResult && !error ? (
-						<section>
-							<h1>Successfully imported @{userChannelFirebase.slug}!</h1>
-							<p>Go to the new Radio4000. Your channel is waiting for you.</p>
-							<p><a href={`https://radio4000.com/${userChannelFirebase.slug}`}>radio4000.com/{userChannelFirebase.slug}</a></p>
-						</section>
-					) : (
-						<ErrorDisplay error={error} />
-					)}
-					</>
-				) : (
-					<i>
-						Waiting for user authentication into version 1 & version 2 accounts, to start channel import.
-					</i>
-				)}
-			</r4-migration-step>
-		</r4-migration>
-		</>
-	)
+{migrationResult && !error ? (
+	<section>
+		<h1>Successfully imported @{userChannelFirebase.slug}!</h1>
+		<p>Go to the new Radio4000. Your channel is waiting for you.</p>
+		<p><a href={`https://radio4000.com/${userChannelFirebase.slug}`}>radio4000.com/{userChannelFirebase.slug}</a></p>
+	</section>
+) : (
+	<ErrorDisplay error={error} />
+)}
+</>
+) : (
+	<i>
+		Waiting for user authentication into version 1 & version 2 accounts, to start radio channel migration. This will import to the version 2 website.
+	</i>
+)}
+</r4-migration-step>
+</r4-migration>
+</>
+)
 }

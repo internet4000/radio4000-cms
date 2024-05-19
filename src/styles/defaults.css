@@ -76,6 +76,11 @@ strong {
 	font-weight: 600;
 }
 
+blockquote {
+	font-style: italic;
+	font-size: 0.9rem;
+}
+
 /* keyboard shortcuts */
 kbd {
 	display: inline-block;
