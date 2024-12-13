@@ -67,6 +67,7 @@ export default function Auth({onSubmit, submitLabel, redirectTo}) {
 						value={data.email}
 						disabled={loading}
 						onChange={handleChange}
+						autocomplete="off"
 						required
 					/>
 				</label>
@@ -75,6 +76,7 @@ export default function Auth({onSubmit, submitLabel, redirectTo}) {
 						name="password"
 						type="password"
 						placeholder="Your password"
+						autocomplete="off"
 						value={data.password}
 						disabled={loading}
 						onChange={handleChange}
