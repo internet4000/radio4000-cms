@@ -57,7 +57,7 @@ export default function Auth({onSubmit, submitLabel, redirectTo}) {
 
 	return (
 		<div>
-			<form onSubmit={handleSubmit} className="FormStacked">
+			<form onSubmit={handleSubmit} className="FormStacked" name="login-v2">
 				<label>Email
 					<input
 						name="email"
